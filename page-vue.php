@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Monster Slayer</title>
+    <!-- <script src="https://npmcdn.com/vue/dist/vue.js"></script> -->
+    <script src="<?php echo get_theme_file_uri(); ?>/js/vueCSS/vue.js"></script>
+    <!-- <script src="<?php echo get_theme_file_uri(); ?>/js/vueCSS/vue.min.js"></script> -->
+    <link rel="stylesheet" href="<?php echo get_theme_file_uri(); ?>/js/vueCSS/foundation.min.css">
+    <link rel="stylesheet" href="<?php echo get_theme_file_uri(); ?>/js/vueCSS/app.css">
+</head>
+<body>
+    <h2 style="text-align: center; color: red;">VUE.JS GAME</h2>
+<div id="appVue" style="max-width: 95%;">
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">ЧИ</h1>
+            <div class="healthbar">
+                <div 
+                class="healthbar text-center" 
+                style="background-color: green; margin: 0; color: white;"
+                :style="{ width: playerHealth + '%'}"
+                >
+                {{ playerHealth}}
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">МАНГАС</h1>
+            <div class="healthbar">
+                <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;"
+                :style="{ width: monsterHealth + '%'}"
+                >
+                {{ monsterHealth }}
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="row controls" v-if="!gameIsRunning">
+        <div class="small-12 columns">
+            <button id="start-game" @click="startGame">ТОГЛООМ ЭХЛҮҮЛЭХ</button>
+        </div>
+    </section>
+    <section class="row controls" v-else>
+        <div class="small-12 columns">
+            <button id="attack" @click="attack">ДАЙРАХ</button>
+            <button id="special-attack" @click="specialAttack">ХАМАГ ХҮЧЭЭР ЦОХИХ</button>
+            <button id="heal" @click="heal">ЭМ УУХ</button>
+            <button id="give-up" @click="giveUp">БУУЖ ӨГӨХ</button>
+        </div>
+    </section>
+    <section class="row log" v-if="turns.length > 1">
+        <div class="small-12 columns">
+            <ul>
+                <li v-for=" turn in turns" 
+                :class="{'player-turn':turn.isPlayer, 'monster-turn': !turn.isPlayer}"
+                >
+                    {{turn.text}}
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+
+
+<script src="<?php echo get_theme_file_uri(); ?>/js/vueCSS/myVue.js">
+
+</script>
+</body>
+</html>
